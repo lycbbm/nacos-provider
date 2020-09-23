@@ -1,0 +1,42 @@
+server:
+  port: 9003
+  servlet:
+    context-path: /ext
+spring:
+  application:
+    name: citycode-ext-service
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/citycode_engine?characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      maximum-pool-size: 15
+      minimum-idle: 5
+      connection-test-query: select 1
+mybatis-plus:
+  type-handlers-package: com.tencent.gov.goff.common.db.handler
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    # 0 <= id <=31, datacenter-id + worker-id 确保唯一
+  # worker-id: 0
+  # datacenter-id: 0
+    db-config:
+      # 全局删除字段名
+      logic-delete-field: deleted
+      # 逻辑已删除值
+      logic-delete-value: 1
+      # 逻辑未删除值
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+feign:
+  httpclient:
+    enabled=true:
+  client:
+    config:
+      default:
+        connectTimeout=2000:

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tencent.citycode.ext.dao.ScreenShotMapper">
+
+    <resultMap id="BaseResultMap" type="com.tencent.citycode.ext.pojo.domain.ScreenShotDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="screen_shot_id" jdbcType="VARCHAR" property="screenShotId"/>
+        <result column="city_code_id" jdbcType="VARCHAR" property="cityCodeId"/>
+        <result column="code_def_key" jdbcType="VARCHAR" property="codeDefKey"/>
+        <result column="screen_shot_time" jdbcType="BIGINT" property="screenShotTime"/>
+        <result column="appid" jdbcType="VARCHAR" property="appid"/>
+        <result column="userId" jdbcType="VARCHAR" property="userId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        screen_shot_id,
+        city_code_id,
+        code_def_key,
+        screen_shot_time,
+        appid,
+        userId
+    </sql>
+
+</mapper>

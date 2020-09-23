@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <springProperty scope="context" name="app_name" source="spring.application.name"/>
+    <property name="log.path" value="../data/logs/${app_name}"/>
+    <property name="log.pattern" value="[${app_name}][%d{yyyy-MM-dd HH:mm:ss}][%level][%class->%method#%line][%tid]: %msg%n"/>
+
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="console">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+                <pattern>${log.pattern}</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="rollingFile">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}.%d{yyyy-MM-dd}%i.log</fileNamePattern>
+            <!-- 日志文件最大多大 -->
+            <maxFileSize>128mb</maxFileSize>
+            <!-- 日志最多多少个 -->
+            <maxHistory>180</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="rollingFile"/>
+    </root>
+</configuration>

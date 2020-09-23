@@ -1,0 +1,51 @@
+management:
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+  endpoints:
+    web:
+      basePath: /actuator
+      exposure:
+        include: 'health' 
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
+    mongo:
+      enabled: false
+    redis:
+      enabled: false
+    solr:
+      enabled: false
+    rabbit:
+      enabled: false
+    elasticsearch:
+      enabled: false
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        acl-token: m21p2BE1AtpwPbrxZdC6k+eXA==
+        enabled: true
+        format: YAML
+        data-key: data    #  (2) 表示consul上面的KEY值(或者说文件的名字) 默认是data
+        watch:
+          enabled: true  #是否监听配置文件变化
+      discovery:
+        acl-token: m21p2BE1AtpwPbrxZdC6k+eXA==
+        enabled: true
+        health-check-interval: 5s
+        health-check-timeout: 10s
+        instanceId: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        prefer-ip-address: true
+        heartbeat:
+          enabled: true
+          ttlValue: 30
+    refresh:
+      extra-refreshable: javax.sql.DataSource

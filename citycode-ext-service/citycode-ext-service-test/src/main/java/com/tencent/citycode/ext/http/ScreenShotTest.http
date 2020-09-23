@@ -1,0 +1,37 @@
+### saveOrUpdate
+POST http://localhost:8888/citycode-ext-service/screenShot/v1/saveOrUpdate
+Content-Type: application/json
+
+{
+    "id": "",
+    "screenShotId": "",
+    "cityCodeId": "",
+    "codeDefKey": "",
+    "screenShotTime": "",
+    "appid": "",
+    "userId": ""
+}
+
+### get
+GET http://localhost:8888/citycode-ext-service/screenShot/v1/get/1276851342052696066
+Accept: application/json
+
+### delete
+POST http://localhost:8888/citycode-ext-service/screenShot/v1/delete
+Content-Type: application/json
+
+{
+  "id": 1290563700515667970,
+  "updatedBy": "testUser"
+}
+
+### list
+POST http://localhost:8888/citycode-ext-service/screenShot/v1/list
+Content-Type: application/json
+
+{
+  "pageNo": 1,
+  "pageSize": 2,
+  "order": "desc",
+  "sortBy": "id"
+}
